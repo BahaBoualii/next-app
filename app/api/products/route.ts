@@ -14,4 +14,16 @@ async function GET() {
     }
 }
 
-export { GET };
+async function POST(request: Request) {
+    const body = await request.json();
+    const product = {
+        id: products.length,
+        name: body.name,
+        price: body.price,
+        description: body.description
+    }
+    products.push(product);
+    return NextResponse.json(product);
+}
+
+export { GET, POST };
